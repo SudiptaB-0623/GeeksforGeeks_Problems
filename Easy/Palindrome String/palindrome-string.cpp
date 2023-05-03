@@ -6,27 +6,18 @@ using namespace std;
 
 // } Driver Code Ends
 //User function template for C++
-class Solution
-{
+class Solution{
 public:	
 	
 	
 	int isPalindrome(string S)
 	{
 	    // Your code goes here
-	    stack<char> stk;
-	    for(int i=0;i<S.size();i++)
+	    for(int i=0, j=S.size()-1;i<j;i++,j--)
 	    {
-	        stk.push(S[i]);
-	    }
-	    
-	    for(int i=0;i<S.size();i++)
-	    {
-	        if(stk.top()!=S[i])
+	        if(S[i]!=S[j])
 	            return 0;
-	        stk.pop();
 	    }
-	    
 	    return 1;
 	}
 
