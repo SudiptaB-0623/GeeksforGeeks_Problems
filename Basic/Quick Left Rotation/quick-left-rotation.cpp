@@ -10,15 +10,10 @@ class Solution{
 	void leftRotate(int arr[], int k, int n) 
 	{ 
 	   // Your code goes here
-	   vector<int> vcc;
-	   for(int i=k;i<k+n;i++)
-	   {
-	       vcc.push_back(arr[i%n]);
-	   }
-	   for(int i=0;i<n;i++)
-	   {
-	       arr[i] = vcc[i];
-	   }
+	   k = k%n;
+	   reverse(arr, arr+k);
+        reverse(arr+k, arr+n);
+        reverse(arr, arr+n);
 	} 
 		 
 
