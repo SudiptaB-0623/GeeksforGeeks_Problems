@@ -37,17 +37,19 @@ class Solution
     {
         // code here
         // return head of reversed list
-        Node *first = new Node(head->data);
+        if(head->next == NULL)
+            return head;
         
-        Node *temp = head->next;
+        Node *temp = head->next, *flag = head;
+        
         while(temp!=NULL)
         {
-            Node *flag = new Node(temp->data);
-            flag->next = first;
-            first = flag;
-            temp = temp->next;
+            flag->next = temp->next;
+            temp->next = head;
+            head = temp;
+            temp = flag->next;
         }
-        return first;
+        return head;
     }
     
 };
