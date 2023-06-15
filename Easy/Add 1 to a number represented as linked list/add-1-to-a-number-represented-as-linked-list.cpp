@@ -46,46 +46,50 @@ struct Node
 class Solution
 {
     public:
-    Node* rev(Node *head)
+    Node *rev(Node *head)
     {
-        Node *temp = head, *curr = head, *point = NULL;
-        while(temp!=NULL)
+        Node *prev = NULL;
+        Node *nex = NULL;
+        Node *curr = head;
+        
+        while(curr!=NULL)
         {
-            temp = temp->next;
-            curr->next = point;
-            point = curr;
-            curr = temp;
+            nex = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nex;
         }
-        return point;
+        
+        return prev;
     }
     Node* addOne(Node *head) 
     {
         // Your Code here
         // return head of list after adding one
         
-        Node *rfront = rev(head);
+        Node *first = rev(head);
         
-        rfront->data += 1;
-        int carry = rfront->data/10;
-        rfront->data = rfront->data%10;
+        first->data += 1;
+        int carry = first->data/10;
+        first->data = first->data%10;
         
-        Node *temp = rfront;
-        
-        while(carry!=0)
+        Node *temp = first->next;
+        while(temp!=NULL && carry!=0)
         {
-            if(temp->next == NULL)
-            {
-                Node *flag = new Node(carry);
-                temp->next = flag;
-                break;
-            }
-            temp = temp->next;
-            temp->data += 1;
+            temp->data += carry;
             carry = temp->data/10;
             temp->data = temp->data%10;
+            temp = temp->next;
         }
-        rfront = rev(rfront);
-        return rfront;
+        
+        head = rev(first);
+        if(carry!=0)
+        {
+            Node *flag = new Node(carry);
+            flag->next = head;
+            head = flag;
+        }
+        return head;
     }
 };
 
