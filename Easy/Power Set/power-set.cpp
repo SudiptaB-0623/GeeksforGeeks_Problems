@@ -6,35 +6,27 @@ using namespace std;
 class Solution
 {
 	public:
-	    void subseq(string s, string sub, vector<string> &ans)
+	    void  power(int ind, string s, string temp, int size, vector<string> &ans)
 	    {
-	        ans.push_back(s);
-	        
-	        if(sub.size()==0)
+	        if(ind == size)
 	        {
+	            if(temp.size() == 0)
+	                return;
+	            ans.push_back(temp);
 	            return;
 	        }
-	        
-	        
-	        for(int i=0;i<sub.size();i++)
-	        {
-	            string temp = s + sub[i];
-	            string temp2 = sub.substr(i+1);
-	            subseq(temp, temp2, ans);
-	        }
+	        temp = temp + s[ind];
+	        power(ind+1, s, temp, size, ans);
+	        temp.erase(temp.size()-1);
+	        power(ind+1, s, temp, size, ans);
 	    }
 		vector<string> AllPossibleStrings(string s)
 		{
 		    // Code here
 		    vector<string> ans;
-		    
-		    for(int i=0;i<s.size();i++)
-		    {
-		        string sub = s.substr(i+1);
-		        string a = s.substr(i ,1);
-		        //cout<<a<<" "<<sub<<endl;
-		        subseq(a, sub, ans);
-		    }
+		    int n = s.size();
+		    string temp = {};
+		    power(0, s, temp, n, ans);
 		    sort(ans.begin(), ans.end());
 		    return ans;
 		}
