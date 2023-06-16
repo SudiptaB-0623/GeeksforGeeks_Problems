@@ -29,49 +29,145 @@ struct Node *start = NULL;
 };
 
 */
+// class Solution
+// {
+//     public:
+//     //Function to sort a linked list of 0s, 1s and 2s.
+//     Node* segregate(Node *head) 
+//     {
+//         // Add code here
+//         if(head->next == NULL)
+//             return head;
+            
+//         Node *l0 = NULL, *l1 = NULL, *l2 = NULL;
+//         Node *l0_last = NULL, *l1_last = NULL, *l2_last = NULL;
+        
+//         Node *curr = head;
+//         head = NULL;
+//         while(curr!=NULL)
+//         {
+//             if(curr->data == 0)
+//             {
+//                 if(l0 == NULL)
+//                 {
+//                     l0 = curr;
+//                     l0_last = l0;
+//                 }
+//                 else
+//                 {
+//                     l0_last->next = curr;
+//                     l0_last = l0_last->next;
+//                 }
+//                 curr = curr->next;
+//                 l0_last->next = NULL;
+//             }
+//             if(curr->data == 1)
+//             {
+//                 if(l1 == NULL)
+//                 {
+//                     l1 = curr;
+//                     l1_last = l1;
+//                 }
+//                 else
+//                 {
+//                     l1_last->next = curr;
+//                     l1_last = l1_last->next;
+//                 }
+//                 curr = curr->next;
+//                 l1_last->next = NULL;
+//             }
+//             if(curr->data == 2)
+//             {
+//                 if(l2 == NULL)
+//                 {
+//                     l2 = curr;
+//                     l2_last = l2;
+//                 }
+//                 else
+//                 {
+//                     l2_last->next = curr;
+//                     l2_last = l2_last->next;
+//                 }
+//                 curr = curr->next;
+//                 l2_last->next = NULL;
+//             }
+//         }
+        
+//         if(l0!=NULL)
+//         {
+//             head = l0;
+//             l0_last->next = l1;
+//         }
+//         if(l1!=NULL)
+//         {
+//             if(head == NULL)
+//                 head = l1;
+//             l1_last->next = l2;
+//         }
+        
+        
+//         if(head == NULL)
+//             head = l2;
+//         head = l0;
+        
+//         return head;
+//     }
+// };
 class Solution
 {
     public:
     //Function to sort a linked list of 0s, 1s and 2s.
-    Node* segregate(Node *head) 
-    {
-        
-        // Add code here
-        int z = 0, o = 0, t = 0;
-        Node *temp = head;
-        while(temp!=NULL)
-        {
-            if(temp->data==0)
-                z++;
-            else if(temp->data==1)
-                o++;
-            else
-                t++;
-            
-            temp = temp->next;
-        }
-        temp = head;
-        while(temp!=NULL)
-        {
-            if(z>0)
-            {
-                z--;
-                temp->data = 0;
-            }
-            else if(o>0)
-            {
-                o--;
-                temp->data = 1;
-            }
-            else
-            {
-                t--;
-                temp->data = 2;
-            }
-            temp = temp->next;
-        }
+    Node* segregate(struct Node *head) {
+    if (!head || !(head->next))
         return head;
-    }
+  
+    //creating three dummy nodes to point to beginning of three linked lists. 
+    Node* zeroD = new Node(0); 
+    Node* oneD = new Node(0); 
+    Node* twoD = new Node(0); 
+  
+    //initializing current pointers for three lists. 
+    Node* zero = zeroD, *one = oneD, *two = twoD; 
+  
+    //traversing over the list with a pointer. 
+    Node* curr = head; 
+    while (curr) { 
+        
+        //we check data at current node and store the node in it's respective
+        //list and update the link part of that list.
+        if (curr->data == 0) { 
+            zero->next = curr; 
+            zero = zero->next; 
+            curr = curr->next; 
+        }
+        else if (curr->data == 1) { 
+            one->next = curr; 
+            one = one->next; 
+            curr = curr->next; 
+        } 
+        else { 
+            two->next = curr; 
+            two = two->next; 
+            curr = curr->next; 
+        } 
+    } 
+  
+    //attaching the three lists containing 0s,1s and 2s respectively.
+    zero->next = (oneD->next) ? (oneD->next) : (twoD->next); 
+    one->next = twoD->next; 
+    two->next = NULL; 
+  
+    //updating the head of the list.
+    head = zeroD->next; 
+  
+    //deleting dummy nodes.
+    delete zeroD; 
+    delete oneD; 
+    delete twoD; 
+  
+    return head;
+}
+
 };
 
 
