@@ -45,55 +45,39 @@ public:
     Node* divide(int N, Node *head)
     {
         // code here
-        Node *front = NULL, *back = NULL, *temp = head, *tojoin = NULL;
-        if(head->data%2 == 0)
+        if(head->next == NULL)
+            return head;
+        Node *first = head, *last = head;
+       
+        while(last->next!=NULL)
+            last = last->next;
+        int i=1;
+        for(; i<=N && (first->data%2)==1;i++)
         {
-            front = head;
-            back = head;
+            Node *temp = first;
+            first = first->next;
+            temp->next = NULL;
+            last->next = temp;
+            last = temp;
         }
-        else
+        i++;
+        Node *temp = first;
+        for(; i<=N ; i++)
         {
-            tojoin = head;
-        }
-        
-        while(temp!=NULL && temp->next!=NULL)
-        {
-            if(temp->next->data % 2 == 0)
+            if(temp->next->data%2 == 1)
             {
-                //cout<<temp->next->data<<endl;
-                
-                if(tojoin!=NULL)
-                {
-                    Node *flag = temp->next;
-                    temp->next = flag->next;
-                    flag->next = tojoin;
-                    if(back == NULL)
-                    {
-                        back = flag;
-                        front = back;
-                    }
-                    else
-                    {
-                        //cout<<flag->data<<endl;
-                        back->next = flag;
-                        back = flag;
-                    }
+                Node *flag = temp->next;
+                if(flag==last)
                     continue;
-                }
-                else
-                    back = back->next;
+                temp->next = flag->next;
+                flag->next = NULL;
+                last->next = flag;
+                last = flag;
             }
             else
-            {
-                if(tojoin==NULL)
-                    tojoin = temp->next;
-            }
-            temp = temp->next;
+                temp = temp->next;
         }
-        if(front!=NULL)
-            return front;
-        else
-            return head;
+        return first;
     }
 };
 
