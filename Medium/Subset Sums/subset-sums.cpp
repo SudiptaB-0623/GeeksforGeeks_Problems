@@ -6,40 +6,24 @@ using namespace std;
 class Solution
 {
 public:
-    void sub_seq(vector<int> a, vector<int> b, vector<int> &ans)
+    void pick_not_pick(int ind, int sum, vector<int> &ans, vector<int> arr, int n)
     {
-        int sum = 0;
-        for(int i=0;i<a.size();i++)
-            sum += a[i];
-        ans.push_back(sum);
-        
-        if(b.size()==0)
-            return;
-        
-        for(int i=0;i<b.size();i++)
+        if(ind == n)
         {
-            vector<int> temp, temp2;
-            temp2.insert(temp2.end(), a.begin(), a.end());
-            temp2.insert(temp2.end(), b.begin()+i, b.begin()+i+1);
-            
-            temp.insert(temp.begin(), b.begin()+i+1, b.end());
-            sub_seq(temp2, temp, ans);
+            ans.push_back(sum);
+            return;
         }
+        pick_not_pick(ind+1, sum + arr[ind], ans, arr, n);
+        pick_not_pick(ind+1, sum, ans, arr, n);
     }
-    vector<int> subsetSums(vector<int> nums, int N)
+    vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
         vector<int> ans;
+        int sum = 0;
         
-        for(int i=0;i<N;i++)
-        {
-            vector<int> temp , temp2;
-            temp.insert(temp.begin(), nums.begin()+i+1,nums.end());
-            temp2.push_back(nums[i]);
-            
-            sub_seq(temp2, temp, ans);
-        }
-        ans.push_back(0);
+        pick_not_pick(0, sum, ans, arr, N);
+        
         return ans;
     }
 };
