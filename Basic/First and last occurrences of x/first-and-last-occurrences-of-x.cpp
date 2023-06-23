@@ -6,26 +6,49 @@ using namespace std;
 vector<int> find(int arr[], int n , int x )
 {
     // code here
-    vector<int> ans = {-1, -1};
-    for(int l = 0, r = n-1;l<=r;)
+    vector<int> ans;
+    int curr = INT_MAX;
+    
+    int low = 0, high = n-1;
+    while(low<=high)
     {
-        if(arr[l]==x && ans[0]==-1)
-            ans[0]=l;
-        else
+        int mid = (high + low)/2;
+        if(arr[mid] == x)
         {
-            if(ans[0]==-1)
-                l++;
+            curr = min(curr, mid);
+            high = mid - 1;
         }
-        if(arr[r]==x && ans[1]==-1)
-            ans[1]=r;
+        else if(arr[mid] > x)
+            high = mid - 1;
         else
-        {
-            if(ans[1]==-1)
-                r--;
-        }
-        if(ans[0]!=-1 && ans[1]!=-1)
-            break;
+            low = mid + 1;
     }
+    
+    if(curr == INT_MAX)
+        ans.push_back(-1);
+    else
+        ans.push_back(curr);
+    curr = INT_MIN;
+    
+    low = 0;
+    high = n-1;
+    while(low<=high)
+    {
+        int mid = (high + low)/2;
+        if(arr[mid] == x)
+        {
+            curr = max(curr, mid);
+            low = mid + 1;
+        }
+        else if(arr[mid] > x)
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    if(curr == INT_MIN)
+        ans.push_back(-1);
+    else
+        ans.push_back(curr);
     return ans;
 }
 
