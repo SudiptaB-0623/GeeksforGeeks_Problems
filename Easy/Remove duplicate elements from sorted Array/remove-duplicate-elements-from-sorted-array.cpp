@@ -8,18 +8,19 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
-class Solution{
+class Solution
+{
 public:
     int remove_duplicate(int a[],int n)
     {
         // code here
         int j = 0;
-        for(int i = 1;i<n;i++)
+        for(int i = 1; i<n ; i++)
         {
             if(a[i]!=a[j])
             {
                 j++;
-                a[j] = a[i];
+                swap(a[i], a[j]);
             }
         }
         return j+1;
