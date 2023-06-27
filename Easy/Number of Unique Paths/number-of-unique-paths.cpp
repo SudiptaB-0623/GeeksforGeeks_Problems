@@ -29,8 +29,34 @@ class Solution
     int NumberOfPath(int a, int b)
     {
         //code here
-        vector<vector<int>> dp(a, vector<int>(b, -1));
-        return paths(a-1, b-1, dp);
+        vector<int> prev(b, 0);
+        
+        for(int i = 0; i<a ; i++)
+        {
+            vector<int> temp(b, 0);
+            for(int j = 0; j<b ; j++)
+            {
+                if(i==0 && j==0)
+                    temp[j] = 1;
+                else
+                {
+                    int left = 0;
+                    int up = 0;
+                    if(j>0)
+                    {
+                        left = temp[j-1];
+                    }
+                    if(i>0)
+                    {
+                        up = prev[j];
+                    }
+                    
+                    temp[j] = left + up;
+                }
+            }
+            prev = temp;
+        }
+        return prev[b-1];
     }
 };
 
