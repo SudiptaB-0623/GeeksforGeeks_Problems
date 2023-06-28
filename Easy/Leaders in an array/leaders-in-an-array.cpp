@@ -15,16 +15,15 @@ class Solution
     vector<int> leaders(int a[], int n)
     {
         // Code here
+        int large = a[n-1];
         vector<int> ans;
-        int leader = a[n-1];
-        ans.push_back(leader);
-        for(int i = n-2;i>=0;i--)
+        
+        for(int i=n-1; i>=0; i--)
         {
-            if(a[i]>=leader)
+            if(a[i]>=large)
             {
-                leader = a[i];
-                //ans.insert(ans.begin(),leader);
-                ans.push_back(leader);
+                ans.push_back(a[i]);
+                large = a[i];
             }
         }
         reverse(ans.begin(), ans.end());
