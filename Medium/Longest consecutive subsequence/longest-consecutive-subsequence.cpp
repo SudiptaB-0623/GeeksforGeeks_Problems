@@ -4,7 +4,8 @@ using namespace std;
 
 
 // } Driver Code Ends
-class Solution{
+class Solution
+{
   public:
     // arr[] : the input array
     // N : size of the array arr[]
@@ -13,36 +14,35 @@ class Solution{
     int findLongestConseqSubseq(int arr[], int N)
     {
         //Your code here
-        set<int> st;
-        for(int i=0 ; i<N ; i++)
-        {
-            st.insert(arr[i]);
-        }
-        int ans = 1, count = 1;
-        int i = 0, prev, curr;
+        sort(arr, arr+N);
+        int ans = 1, len = 0;
+        int curr;
         
-        for(auto& it : st)
+        for(int i=0; i<N ; i++)
         {
+            if(i>0 && arr[i]==arr[i-1])
+                continue;
+            
             if(i==0)
             {
-                prev = it;
+                curr = arr[0];
+                len = 1;
+                continue;
+            }
+            
+            if(arr[i] == curr+1)
+            {
+                curr++;
+                len++;
+                ans = max(ans, len);
             }
             else
             {
-                curr = it;
-                if(curr-prev == 1)
-                {
-                    count++;
-                }
-                else
-                {
-                    count = 1;
-                }
-                ans = max(ans, count);
-                prev = curr;
+                curr = arr[i];
+                len = 1;
             }
-            i++;
         }
+        
         return ans;
     }
 };
