@@ -10,23 +10,23 @@ public:
     vector<int> findTwoElement(vector<int> arr, int n) 
     {
         // code here
-        int miss = 0, repeat = 0;
+        int repeat = 0, missing = 0;
         for(int i=0;i<n;i++)
         {
-            if(arr[abs(arr[i]) - 1] < 0)
+            if(arr[abs(arr[i])-1]<0)
+            {
                 repeat = abs(arr[i]);
-            else
-                arr[abs(arr[i]) - 1] = -arr[abs(arr[i]) - 1];
+                continue;
+            }
+            arr[abs(arr[i])-1] = -arr[abs(arr[i])-1];
         }
+        
         for(int i=0;i<n;i++)
         {
             if(arr[i]>0)
-            {
-                miss = i+1;
-                break;
-            }
+                missing = i+1;
         }
-        return {repeat, miss};
+        return {repeat, missing};
     }
 };
 
