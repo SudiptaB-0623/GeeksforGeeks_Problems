@@ -10,32 +10,34 @@ using namespace std;
 class Solution
 {   
 public:
-    bool subsum(int ind, int target, vector<int> arr, vector<vector<int>> &dp)
+    bool subSet(int ind, int target, vector<int> arr, vector<vector<int>> &dp)
     {
-        if(arr[ind] == target)
-            return dp[ind][target] = true;
-        
-        if(ind == 0)
-            return dp[ind][target] = (arr[ind] == target);
-        
         if(dp[ind][target] != -1)
             return dp[ind][target];
             
-        bool notTake = subsum(ind-1, target, arr, dp);
-        bool Take = false;
-        if(target>=arr[ind])
-            Take = subsum(ind-1, target-arr[ind], arr, dp);
+        if(target == 0)
+            return dp[ind][target] = true;
         
-        return dp[ind][target] = (Take || notTake);
+        if(ind == 0)
+            return dp[ind][target] = (target == arr[0]);
+        
+        bool taken = false;
+        if(arr[ind]<=target)
+            taken = subSet(ind-1, target-arr[ind], arr, dp);
+        
+        if(taken == true)       //If taken is true, no need to check for not true as we need only one such subset
+            return dp[ind][target] = true;
+        
+        bool not_taken = subSet(ind-1, target, arr, dp);
+        
+        return dp[ind][target] = (taken||not_taken);
     }
     bool isSubsetSum(vector<int>arr, int sum)
     {
         // code here 
         int n = arr.size();
-        
         vector<vector<int>> dp(n, vector<int>(sum+1, -1));
-        
-        return subsum(n-1, sum, arr, dp);
+        return subSet(n-1, sum, arr, dp);
     }
 };
 
