@@ -8,8 +8,7 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 
-class Solution
-{
+class Solution{
 public:
     void ins(stack<int> &s , int t)
     {
