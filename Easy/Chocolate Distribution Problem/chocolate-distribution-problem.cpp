@@ -8,7 +8,6 @@ class Solution
     public:
     long long findMinDiff(vector<long long> a, long long n, long long m)
     {
-        //code
         sort(a.begin(), a.end());
         int low = 0, high = m-1;
         int min = a[high]-a[low];
