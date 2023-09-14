@@ -25,21 +25,21 @@ class Solution
     void bubbleSort(int arr[], int n)
     {
         // Your code here  
-        for(int i=0;i<n;i++)                        //Bubble sort
+        for(int i=n-1 ; i>=1 ; i--)
         {
-            int flag = 0;
-            for(int j=1;j<n;j++)
+            bool swapped = false;
+            for(int j=0 ; j<i ; j++)
             {
-                if(arr[j]<arr[j-1])
+                if(arr[j]>arr[j+1])
                 {
-                    swap(arr[j],arr[j-1]);
-                    flag++;
+                    swap(arr[j], arr[j+1]);
+                    swapped = true;
                 }
             }
-            if(flag==0)
+            
+            if(swapped == false)
                 break;
         }
-
     }
 };
 
