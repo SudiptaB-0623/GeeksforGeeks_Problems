@@ -26,19 +26,15 @@ class Solution
     void insertionSort(int arr[], int n)
     {
         //code here
-        for(int i=1;i<n;i++)                        // Insertion Sort
+        for(int i=0 ; i<n ; i++)
         {
-            for(int j=i-1,k=i;j>=0;j--,k--)
+            int j = i;
+            while(j>0 && arr[j-1]>arr[j])
             {
-                if(arr[j]>arr[k])
-                {
-                    int a = arr[j];
-                    arr[j]=arr[k];
-                    arr[k]=a;
-                    //swap(arr[j],arr[k]);
-                }
-                else
-                    break;
+                int temp = arr[j];
+                arr[j] = arr[j-1];
+                arr[j-1] = temp;
+                j--;
             }
         }
     }
