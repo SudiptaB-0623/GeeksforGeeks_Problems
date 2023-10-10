@@ -28,13 +28,13 @@ class Solution
         //code here
         for(int i=0 ; i<n ; i++)
         {
-            int j = i;
-            while(j>0 && arr[j-1]>arr[j])
+            int key = i;
+            while(key>0 && arr[key-1]>arr[key])
             {
-                int temp = arr[j];
-                arr[j] = arr[j-1];
-                arr[j-1] = temp;
-                j--;
+                int temp = arr[key-1];
+                arr[key-1] = arr[key];
+                arr[key] = temp;
+                key--;
             }
         }
     }
