@@ -24,8 +24,8 @@ class Solution
     //Function to sort the array using bubble sort algorithm.
     void bubbleSort(int arr[], int n)
     {
-        // Your code here  
-        for(int i=n-1 ; i>=1 ; i--)
+        // An optimized version of Bubble Sort 
+        for(int i=n-1 ; i>=0 ; i--)
         {
             bool swapped = false;
             for(int j=0 ; j<i ; j++)
@@ -36,7 +36,8 @@ class Solution
                     swapped = true;
                 }
             }
-            
+            // If no two elements were swapped
+            // by inner loop, then break
             if(swapped == false)
                 break;
         }
