@@ -16,13 +16,13 @@ class Solution
         vis[0] = 1;
         
         vector<int> bfs;
-        while(!q.empty())
+        while(q.empty() == false)
         {
             int node = q.front();
             q.pop();
             bfs.push_back(node);
             
-            for(auto it: adj[node])
+            for(auto it : adj[node])
             {
                 if(vis[it] != 1)
                 {
