@@ -1,0 +1,10 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/largest-number-formed-from-an-array1117/1">Largest Number formed from an Array</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given an array of strings <strong>arr[] </strong>of length<strong> n </strong>representing non-negative integers, arrange them in a manner, such that, after concatenating them in order, it results in the <strong>largest possible number</strong>. Since the result may be very large, return it as a string.</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input:</strong> n = 5, arr[] =  {"3", "30", "34", "5", "9"}
+<strong>Output:</strong> "9534330"
+<strong>Explanation:</strong> Given numbers are  {"3", "30", "34", "5", "9"}, the arrangement "9534330" gives the largest value.</span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input:</strong> n = 4, arr[] =  {"54", "546", "548", "60"}
+<strong>Output:</strong> "6054854654"
+<strong>Explanation:</strong> Given numbers are {"54", "546", "548", "60"}, the arrangement "6054854654" gives the largest value.</span></pre>
+<p><span style="font-size: 14pt;"><strong>Expected Time Complexity:</strong> O(n*log(n) ).<br><strong>Expected Auxiliary Space:</strong> O(n).</span></p>
+<p><span style="font-size: 14pt;"><strong>Constraints:</strong><br>1 ≤ n ≤ 10<sup>5</sup><br>0 ≤ arr[i] ≤ 10<sup>18</sup></span><br><span style="font-size: 14pt;">The sum of all the elements of the array is greater than 0.</span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Paytm</code>&nbsp;<code>Zoho</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>MakeMyTrip</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Data Structures</code>&nbsp;
