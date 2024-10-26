@@ -27,7 +27,8 @@ struct node
     }
 }*head;
 */
-class Solution {
+class Solution 
+{
   public:
     int count(struct Node* head, int key) 
     {
@@ -73,6 +74,7 @@ int main() {
         cin.ignore();
         Solution ob;
         cout << ob.count(head, key) << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
